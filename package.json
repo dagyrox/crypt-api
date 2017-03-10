@@ -1,0 +1,10 @@
+{
+  "name": "crypt-api",
+  "description": "Crypt Application",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "cors": "^2.8.1",
+    "express": "^4.15.2"
+  }
+}
