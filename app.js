@@ -1,7 +1,9 @@
+// for running app in linux, as service, using pm2
+// #!/usr/bin/env nodejs
 var express = require('express');
 var crypt = require('./routes/crypt');
 
-    
+var portNum = 80;
 var app = express();
 
 app.use(function(req, res, next) {
@@ -12,16 +14,16 @@ app.use(function(req, res, next) {
 
 app.get('/encrypt', function(req, res) {
     var term = req.query.term;
-    var password = req.query.password;
-    res.send(crypt.encrypt(term, password));
+    var key = req.query.key;
+    res.send(crypt.encrypt(term, key));
 });
 
 app.get('/decrypt', function(req, res) {
     var term = req.query.term;
-    var password = req.query.password;
-    res.send(crypt.decrypt(term, password));
+    var key = req.query.key;
+    res.send(crypt.decrypt(term, key));
 });
 
-app.listen(3000);
+app.listen(portNum);
 
-console.log('Listening on port 3000...');
+console.log('Listening on port ' + portNum);
