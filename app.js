@@ -36,4 +36,5 @@ app.post('/decrypt', function(req, res) {
 
 app.listen(portNum);
 
-log.log('Listening on port ' + portNum + '...');
+// log.log('Listening on port ' + portNum + '...');
+console.log('Listening on port ' + portNum + '...');
