@@ -1,9 +1,13 @@
 // for running app in linux, as service, using pm2
 // #!/usr/bin/env nodejs
-var express = require('express');
-var crypt = require('./routes/crypt');
 
-var portNum = 80;
+// Command line arguments: [port number]
+var bodyParser = require('body-parser');
+var crypt = require('./routes/crypt');
+var express = require('express');
+var log = require('./logging/logging');
+
+var portNum = process.argv[2] || 80;
 var app = express();
 
 app.use(function(req, res, next) {
@@ -11,19 +15,25 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
 
-app.get('/encrypt', function(req, res) {
-    var term = req.query.term;
-    var key = req.query.key;
-    res.send(crypt.encrypt(term, key));
+app.post('/encrypt', function(req, res) {
+    if(req.body){
+        var term = req.body.term;
+        var key = req.body.key;
+        res.send(crypt.encrypt(term, key));
+    }
 });
 
-app.get('/decrypt', function(req, res) {
-    var term = req.query.term;
-    var key = req.query.key;
-    res.send(crypt.decrypt(term, key));
+app.post('/decrypt', function(req, res) {
+    if(req.body){
+        var term = req.body.term;
+        var key = req.body.key;
+        res.send(crypt.decrypt(term, key));
+    }
 });
 
 app.listen(portNum);
 
-console.log('Listening on port ' + portNum);
+log.log('Listening on port ' + portNum + '...');
