@@ -5,7 +5,7 @@
 var bodyParser = require('body-parser');
 var crypt = require('./routes/crypt');
 var express = require('express');
-var log = require('./logging/logging');
+// var log = require('./logging/logging');
 
 var portNum = process.argv[2] || 80;
 var app = express();
