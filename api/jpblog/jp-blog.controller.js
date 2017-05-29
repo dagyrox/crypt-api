@@ -34,7 +34,7 @@ exports.create = function (req, res) {
                 return res.status(500).send(err);
             }
 
-            return res.status(200);
+            return res.status(200).json('New Post Successful');
         });
     }
 };
@@ -80,7 +80,7 @@ exports.delete = function(req,res){
             post.remove(function(err){
                 if(err){return res.status(500).send(err);}
 
-                return res.status(204);
+                return res.status(204).send('Delete Successful');
             });
         });
     } else {
