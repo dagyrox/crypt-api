@@ -4,9 +4,15 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",
     "cors": "^2.8.1",
     "express": "^4.15.2",
+    "mongoose": "^4.9.4",
+    "plaid": "^2.0.1",
     "simple-node-logger": "^0.93.16"
+  },
+  "scripts":{
+    "start":"nodemon jpapi.js"
   }
 }
