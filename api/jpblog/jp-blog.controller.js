@@ -4,21 +4,8 @@ var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 mongoose.connect('mongodb://jpblogwrite:hiop123j@ds139567.mlab.com:39567/jasonpolitis');
 
-var postSchema = mongoose.Schema({
-    date: String,
-    author: String,
-    title: String,
-    content: String,
-    comments: []
-});
-
-var Post = mongoose.model('Post', postSchema);
-
-// var silence = new Kitten({ name: 'Silence' });
-// console.log(silence.name); // 'Silence'
-
-// fluffy = new Kitten({ name: 'fluffy' });
-// fluffy.speak(); // "Meow name is fluffy"
+var models = require('./jp-blog.models');
+var Post = models.post;
 
 exports.create = function (req, res) {
     if (req.body) {
